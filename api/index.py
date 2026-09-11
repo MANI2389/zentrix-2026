@@ -17,9 +17,9 @@ try:
     from .admin_login import app as admin_login_app
     from .admin_registrations import app as admin_reg_app
 except (ImportError, ValueError):
-    from register import app as register_app
-    from admin_login import app as admin_login_app
-    from admin_registrations import app as admin_reg_app
+    from api.register import app as register_app
+    from api.admin_login import app as admin_login_app
+    from api.admin_registrations import app as admin_reg_app
 
 app = FastAPI(title="ZENTRIX 2K26 API")
 
