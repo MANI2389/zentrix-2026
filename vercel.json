@@ -2,16 +2,8 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/register",
-      "destination": "/api/register.py"
-    },
-    {
-      "source": "/api/admin_login",
-      "destination": "/api/admin_login.py"
-    },
-    {
-      "source": "/api/admin_registrations",
-      "destination": "/api/admin_registrations.py"
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
     }
   ]
 }

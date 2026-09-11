@@ -1,0 +1,6 @@
+dev_server.py
+start_server.bat
+.env
+.env.example
+__pycache__
+*.pyc
