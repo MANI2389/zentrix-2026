@@ -1,3 +1,20 @@
+[project]
+name = "zentrix-2026"
+version = "0.1.0"
+description = "ZENTRIX 2K26 Symposium Web Platform"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110.0",
+    "pydantic>=2.6.0",
+    "supabase>=2.3.0",
+    "pyjwt>=2.8.0",
+    "bcrypt>=4.1.2",
+    "python-multipart>=0.0.9",
+    "email-validator>=2.0.0",
+    "uvicorn>=0.28.0",
+]
+
 [tool.vercel]
 entrypoint = "main:app"
 
