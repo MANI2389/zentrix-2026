@@ -1,6 +1,6 @@
 /**
  * ZENTRIX 2K26 — Live Countdown Timer
- * Target: Tuesday, 25 September 2026, 09:00:00 AM IST (UTC+05:30)
+ * Target: Friday, 25 September 2026, 09:00:00 AM IST (UTC+05:30)
  */
 
 export function initCountdown() {

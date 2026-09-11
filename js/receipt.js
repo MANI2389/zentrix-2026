@@ -409,7 +409,7 @@ export function generatePDFReceipt() {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
   doc.setTextColor(60, 60, 60);
-  doc.text('1. Date & Time: Tuesday, 25 September 2026. Reporting at Campus Auditorium by 8:45 AM sharp.', margin + 4, curY + 9);
+  doc.text('1. Date & Time: Friday, 25 September 2026. Reporting at Campus Auditorium by 8:45 AM sharp.', margin + 4, curY + 9);
   doc.text('2. Verification: Please carry this printed receipt or digital PDF alongside your official College ID Card.', margin + 4, curY + 13);
   doc.text('3. Kit & Food Issuance: Food tokens and registration kits will be issued at the desk upon scanning this receipt.', margin + 4, curY + 17);
 

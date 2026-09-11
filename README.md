@@ -6,7 +6,7 @@
 ---
 
 ## ⚡ Event Details
-- **Date**: Tuesday, 25 September 2026 (9:00 AM – 4:00 PM IST)
+- **Date**: Friday, 25 September 2026 (9:00 AM – 4:00 PM IST)
 - **Venue**: The Kavery Engineering College Campus Auditorium (PIN 636454)
 - **Theme**: *“Innovate • Connect • Create”* | **Tagline**: *“Build • Learn • Grow”*
 - **Registration Fee**: **₹200 per head** (Includes Food & Refreshments, Kit, Participation Certificate & Cash Prizes)
