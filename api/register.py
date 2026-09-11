@@ -15,14 +15,12 @@ from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try:
-    from api._supabase import get_supabase
-except (ImportError, ValueError):
-    try:
-        from ._supabase import get_supabase
-    except (ImportError, ValueError):
-        from _supabase import get_supabase
+# Ensure project root is in sys.path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from api._supabase import get_supabase
 
 app = FastAPI(title="ZENTRIX 2K26 Registration API")
 

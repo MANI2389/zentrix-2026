@@ -11,17 +11,13 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, Header, status
 from fastapi.middleware.cors import CORSMiddleware
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try:
-    from api._supabase import get_supabase
-    from api._auth import decode_access_token
-except (ImportError, ValueError):
-    try:
-        from ._supabase import get_supabase
-        from ._auth import decode_access_token
-    except (ImportError, ValueError):
-        from _supabase import get_supabase
-        from _auth import decode_access_token
+# Ensure project root is in sys.path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from api._supabase import get_supabase
+from api._auth import decode_access_token
 
 app = FastAPI(title="ZENTRIX 2K26 Admin Registrations API")
 
