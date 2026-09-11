@@ -17,9 +17,12 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from ._supabase import get_supabase
+    from api._supabase import get_supabase
 except (ImportError, ValueError):
-    from _supabase import get_supabase
+    try:
+        from ._supabase import get_supabase
+    except (ImportError, ValueError):
+        from _supabase import get_supabase
 
 app = FastAPI(title="ZENTRIX 2K26 Registration API")
 

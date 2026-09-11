@@ -13,11 +13,15 @@ from pydantic import BaseModel, EmailStr, Field
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from ._supabase import get_supabase
-    from ._auth import verify_password, create_access_token
+    from api._supabase import get_supabase
+    from api._auth import verify_password, create_access_token
 except (ImportError, ValueError):
-    from _supabase import get_supabase
-    from _auth import verify_password, create_access_token
+    try:
+        from ._supabase import get_supabase
+        from ._auth import verify_password, create_access_token
+    except (ImportError, ValueError):
+        from _supabase import get_supabase
+        from _auth import verify_password, create_access_token
 
 app = FastAPI(title="ZENTRIX 2K26 Admin Auth API")
 
