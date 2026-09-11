@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ZENTRIX 2K26</title>
+  <meta name="description" content="Symposium Administration Dashboard: participant management, real-time analytics, and data export.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <!-- SheetJS for Client-Side Excel Export -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+<body style="background-color: var(--bg-primary);">
+
+  <!-- ================= ADMIN NAVBAR ================= -->
+  <header class="navbar" style="border-bottom: 1px solid var(--gold-border);">
+    <div class="container navbar-inner">
+      <div class="brand-wrap">
+        <img src="assets/college-crest.png" alt="Crest" class="brand-crest">
+        <div class="brand-info">
+          <span class="brand-title">ZENTRIX 2026 • ADMIN DASHBOARD</span>
+          <span class="brand-sub">The Kavery Engineering College (NAAC A+)</span>
+        </div>
+      </div>
+
+      <div class="nav-actions admin-header-actions">
+        <span id="admin-user-display" class="badge badge-naac desktop-only" style="font-size: 0.8rem;">
+          Admin: Authenticated
+        </span>
+        <button id="refresh-data-btn" class="btn btn-admin" title="Reload fresh data from database">
+          🔄 Refresh
+        </button>
+        <button id="export-excel-btn" class="btn btn-primary" style="font-size: 0.85rem; padding: 7px 14px;" title="Export filtered rows to Excel">
+          📊 Export
+        </button>
+        <a href="index.html" class="btn btn-secondary desktop-only" style="font-size: 0.82rem; padding: 7px 12px;">Public Site</a>
+        <button id="admin-logout-btn" class="btn btn-danger" style="font-size: 0.82rem; padding: 7px 10px;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= DASHBOARD MAIN ================= -->
+  <main class="container section-padding" id="dashboard-content" style="padding-top: 36px;">
+
+    <!-- Dashboard Title -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 14px; margin-bottom: 28px;">
+      <div>
+        <span class="section-subtitle">Symposium Analytics</span>
+        <h1 class="section-title text-gold-gradient" style="margin-bottom: 4px; font-size: 2.2rem;">
+          Registration Management
+        </h1>
+        <p class="text-muted" style="font-size: 0.92rem; margin: 0;">
+          Live participant attendance, revenue calculation, track distribution, and team breakdown.
+        </p>
+      </div>
+      <div id="last-updated-text" class="text-muted" style="font-size: 0.8rem;">
+        Last updated: Just now
+      </div>
+    </div>
+
+    <!-- ================= SUMMARY METRIC CARDS ================= -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 32px;">
+      
+      <!-- Card 1: Total Registrations -->
+      <div class="card" style="padding: 20px; border-color: var(--gold-border-bright);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span class="text-muted" style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px;">Total Teams / Regs</span>
+          <span style="font-size: 1.4rem;">📋</span>
+        </div>
+        <div class="stat-number" id="metric-total-regs">0</div>
+        <div class="text-muted" style="font-size: 0.76rem;">Registered submissions</div>
+      </div>
+
+      <!-- Card 2: Total Participants (True Headcount) -->
+      <div class="card" style="padding: 20px; border-color: #38BDF8; background: rgba(14, 165, 233, 0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; color: #38BDF8;">Total Participants</span>
+          <span style="font-size: 1.4rem;">👥</span>
+        </div>
+        <div class="stat-number" id="metric-total-participants" style="color: #38BDF8;">0</div>
+        <div class="text-muted" style="font-size: 0.76rem;">True attendee headcount</div>
+      </div>
+
+      <!-- Card 3: Solo vs Team Registrations -->
+      <div class="card" style="padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span class="text-muted" style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px;">Solo / Team</span>
+          <span style="font-size: 1.4rem;">🎯</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 12px;">
+          <div>
+            <span class="stat-number" id="metric-solo-regs" style="font-size: 1.8rem; color: #FFF;">0</span>
+            <span class="text-muted" style="font-size: 0.72rem; display: block;">Solo</span>
+          </div>
+          <span style="color: var(--silver-dark);">/</span>
+          <div>
+            <span class="stat-number" id="metric-team-regs" style="font-size: 1.8rem; color: var(--gold-primary);">0</span>
+            <span class="text-muted" style="font-size: 0.72rem; display: block;">Teams</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Total Revenue -->
+      <div class="card" style="padding: 20px; border-color: var(--color-success); background: rgba(16, 185, 129, 0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-success);">Total Collection</span>
+          <span style="font-size: 1.4rem;">💰</span>
+        </div>
+        <div class="stat-number" id="metric-total-revenue" style="color: var(--color-success);">₹0</div>
+        <div class="text-muted" style="font-size: 0.76rem;">₹200 × total participants</div>
+      </div>
+    </div>
+
+    <!-- Per-Event Live Registration Count Cards -->
+    <div style="margin-bottom: 32px;">
+      <h3 style="font-size: 1.15rem; color: var(--gold-light); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+        <span>⚡</span>
+        <span>Technical Tracks Breakdown</span>
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+        
+        <div class="card" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🚀 Startup Spark</strong>
+            <span class="badge badge-tech" id="count-startup-spark">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Idea pitch track</div>
+        </div>
+
+        <div class="card" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">💡 Project Expo</strong>
+            <span class="badge badge-tech" id="count-project-expo">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Prototypes track</div>
+        </div>
+
+        <div class="card" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🐛 Bug Hunters</strong>
+            <span class="badge badge-tech" id="count-bug-hunters">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Debugging sprint</div>
+        </div>
+
+        <div class="card" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🤖 Prompt Master</strong>
+            <span class="badge badge-tech" id="count-prompt-master">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Generative AI track</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Non-Technical Tracks Live Registration Count Cards -->
+    <div style="margin-bottom: 32px;">
+      <h3 style="font-size: 1.15rem; color: #C084FC; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+        <span>🎨</span>
+        <span>Non-Technical Tracks Breakdown</span>
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+        
+        <div class="card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🎬 Cinespark</strong>
+            <span class="badge badge-nontech" id="count-cinespark">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Short film &amp; cinema track</div>
+        </div>
+
+        <div class="card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🎭 Meme Creation</strong>
+            <span class="badge badge-nontech" id="count-meme-creation">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Humor &amp; creative design</div>
+        </div>
+
+        <div class="card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">🔍 Logo Hunting</strong>
+            <span class="badge badge-nontech" id="count-logo-hunting">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Brand clues &amp; visual hunt</div>
+        </div>
+
+        <div class="card" style="padding: 16px; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #FFF; font-size: 0.95rem;">❓ Video Quiz</strong>
+            <span class="badge badge-nontech" id="count-video-quiz">0</span>
+          </div>
+          <div class="text-muted" style="font-size: 0.75rem; margin-top: 4px;">Multimedia audio-visual quiz</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= FILTER BAR ================= -->
+    <div class="card" style="padding: 20px; margin-bottom: 24px; border-color: rgba(255, 255, 255, 0.1);">
+      <div id="filter-bar-grid">
+        
+        <!-- Search Input -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <input type="text" id="filter-search" class="form-control" placeholder="🔍 Search Name, Reg No, or Email...">
+        </div>
+
+        <!-- Technical Event Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="filter-event" class="form-control">
+            <option value="">All Technical Events</option>
+            <option value="Startup Spark">Startup Spark</option>
+            <option value="Project Expo">Project Expo</option>
+            <option value="Bug Hunters">Bug Hunters</option>
+            <option value="Prompt Master">Prompt Master</option>
+          </select>
+        </div>
+
+        <!-- Non-Technical Event Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="filter-nontech" class="form-control" style="border-color: rgba(168, 85, 247, 0.4);">
+            <option value="">All Non-Tech Events</option>
+            <option value="Cinespark">Cinespark</option>
+            <option value="Meme Creation">Meme Creation</option>
+            <option value="Logo Hunting">Logo Hunting</option>
+            <option value="Video Quiz">Video Quiz</option>
+          </select>
+        </div>
+
+        <!-- Department Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="filter-dept" class="form-control">
+            <option value="">All Departments</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="AI&DS">AI &amp; DS</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="MECH">MECH</option>
+            <option value="CIVIL">CIVIL</option>
+            <option value="MCA">MCA</option>
+          </select>
+        </div>
+
+        <!-- Year Filter -->
+        <div class="form-group" style="margin-bottom: 0;">
+          <select id="filter-year" class="form-control">
+            <option value="">All Years</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+          </select>
+        </div>
+
+        <!-- Reset Button -->
+        <button type="button" id="reset-filters-btn" class="btn btn-secondary" style="padding: 10px 18px; font-size: 0.85rem;" title="Clear all filters">
+          Reset Filters
+        </button>
+      </div>
+
+      <!-- Filter Stats counter -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 0.82rem; color: var(--silver-muted);">
+        <div>
+          Showing <strong class="text-gold" id="showing-count">0</strong> of <strong id="total-count">0</strong> records
+        </div>
+        <div id="filter-active-indicator" style="display: none; color: var(--gold-primary);">
+          ● Filters Active
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= REGISTRATIONS TABLE ================= -->
+    <div class="card" style="padding: 0; overflow: hidden; border-color: var(--gold-border);">
+      <div class="table-responsive">
+        <table class="data-table" id="registrations-table">
+          <thead>
+            <tr>
+              <th>Reg ID</th>
+              <th>Full Name</th>
+              <th>Register No</th>
+              <th>Department</th>
+              <th>Year</th>
+              <th>Technical Event</th>
+              <th>Non-Tech Events</th>
+              <th>Team Size</th>
+              <th>Amount</th>
+              <th>Payment UTR</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="registrations-table-body">
+            <tr>
+              <td colspan="11" style="text-align: center; padding: 40px; color: var(--silver-muted);">
+                Loading symposium registrations... ⏳
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= DETAIL MODAL ================= -->
+  <div class="modal-backdrop" id="detail-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-content" id="detail-modal-content">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close detail dialog">✕</button>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+        <span class="badge badge-naac" id="modal-status-badge">Confirmed</span>
+        <span class="text-muted" style="font-size: 0.8rem;" id="modal-created-at"></span>
+      </div>
+
+      <h2 class="text-gold-gradient" style="font-size: 1.6rem; margin-bottom: 2px;" id="modal-reg-id">
+        ZX26-XXXXX
+      </h2>
+      <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 20px;" id="modal-event-title">
+        Startup Spark
+      </p>
+
+      <!-- Primary Info -->
+      <div style="background: var(--bg-surface-elevated); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 10px;">Primary Registrant Information</h4>
+        <div class="modal-lead-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem;">
+          <div><span class="text-muted">Name:</span> <strong id="modal-name" style="color: #FFF;"></strong></div>
+          <div><span class="text-muted">College:</span> <strong id="modal-college" style="color: #FFF;"></strong></div>
+          <div><span class="text-muted">Department:</span> <strong id="modal-dept" style="color: #FFF;"></strong></div>
+          <div><span class="text-muted">Year:</span> <strong id="modal-year-sec" style="color: #FFF;"></strong></div>
+          <div><span class="text-muted">Register No:</span> <strong id="modal-regno" style="color: #FFF;"></strong></div>
+          <div><span class="text-muted">Mobile:</span> <strong id="modal-phone" style="color: #FFF;"></strong></div>
+          <div style="grid-column: span 2;"><span class="text-muted">Email:</span> <strong id="modal-email" style="color: #FFF;"></strong></div>
+        </div>
+      </div>
+
+      <!-- Non-Technical Events Selection -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; color: #C084FC; margin-bottom: 8px;">Non-Technical Event</h4>
+        <div id="modal-nontech-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="text-muted" style="font-size: 0.82rem;">None</span>
+        </div>
+      </div>
+
+      <!-- Team Members Section -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 10px;">
+          Team Roster (<span id="modal-team-count">0</span> Additional Members)
+        </h4>
+        <div id="modal-team-list" style="display: flex; flex-direction: column; gap: 6px;">
+          <!-- Team rows populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Payment & Transaction Details -->
+      <div style="background: rgba(245, 197, 66, 0.05); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+        <h4 style="font-size: 0.95rem; color: var(--gold-primary); margin-bottom: 8px;">Payment Verification</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem;">
+          <div><span class="text-muted">Amount Paid:</span> <strong id="modal-amount" class="text-gold font-display" style="font-size: 1.1rem;"></strong></div>
+          <div><span class="text-muted">UPI UTR / Ref:</span> <strong id="modal-utr" style="color: #FFF; font-family: monospace;"></strong></div>
+        </div>
+
+        <!-- Payment Screenshot Preview if present -->
+        <div id="modal-screenshot-section" style="margin-top: 14px; display: none;">
+          <span class="text-muted" style="font-size: 0.8rem; display: block; margin-bottom: 6px;">Payment Screenshot Uploaded:</span>
+          <a id="modal-screenshot-link" href="#" target="_blank" rel="noopener noreferrer">
+            <img id="modal-screenshot-img" src="" alt="Payment Screenshot" style="max-height: 180px; border-radius: var(--radius-sm); border: 1px solid var(--gold-border); cursor: pointer;" title="Click to view full image">
+          </a>
+        </div>
+      </div>
+
+      <div style="text-align: right;">
+        <button type="button" class="btn btn-secondary" id="modal-close-action-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" style="padding: 20px 0; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.15); margin-top: 40px;">
+    <div class="container">
+      <p class="text-muted" style="font-size: 0.82rem;">
+        © 2026 ZENTRIX 2K26 Admin Management Console • The Kavery Engineering College
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Confirmed | ZENTRIX 2K26</title>
+  <meta name="description"
+    content="Registration confirmation and official receipt download for ZENTRIX 2K26 tech symposium.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <!-- jsPDF CDN for client-side PDF receipt generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-wrap">
+        <img src="assets/college-crest.png" alt="Crest" class="brand-crest">
+        <div class="brand-info">
+          <span class="brand-title">ZENTRIX 2K26</span>
+          <span class="brand-sub">Registration Confirmed</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary">← Back<span class="desktop-only"> to Home</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="container section-padding">
+    <div class="form-container" style="max-width: 860px;" id="success-view-container">
+
+      <!-- Celebratory Header Card -->
+      <div class="card text-center"
+        style="margin-bottom: 28px; border-color: var(--gold-border-bright); background: linear-gradient(135deg, rgba(245, 197, 66, 0.12) 0%, rgba(19, 19, 30, 0.95) 100%);">
+        <div style="font-size: 3.2rem; line-height: 1; margin-bottom: 12px;">🎉</div>
+        <span class="badge badge-success" style="font-size: 0.9rem; padding: 6px 18px; margin-bottom: 12px;">
+          ✓ Registration Successfully Received
+        </span>
+        <h1 class="text-gold-gradient" style="font-size: 2.2rem; margin-bottom: 8px;">
+          Welcome to ZENTRIX 2K26!
+        </h1>
+        <p class="text-muted" style="font-size: 0.95rem; max-width: 600px; margin: 0 auto 18px;">
+          Your registration for the flagship national technical symposium at The Kavery Engineering College has been
+          recorded.
+        </p>
+
+        <!-- Registration ID Banner -->
+        <div
+          style="display: inline-flex; align-items: center; gap: 14px; background: rgba(0, 0, 0, 0.45); padding: 12px 24px; border-radius: var(--radius-md); border: 1px dashed var(--gold-border-bright);">
+          <div>
+            <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">
+              Registration ID</div>
+            <div class="text-gold font-display" id="display-reg-id" style="font-size: 1.6rem; font-weight: 800;">
+              ZX26-PENDING</div>
+          </div>
+          <button type="button" id="copy-reg-id-btn" class="btn btn-admin"
+            style="font-size: 0.78rem; padding: 6px 12px;" title="Copy Registration ID">
+            Copy ID
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Center Buttons -->
+      <div class="hero-actions-wrap"
+        style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;">
+        <button type="button" id="download-receipt-btn" class="btn btn-primary"
+          style="padding: 14px 28px; font-size: 1.05rem;">
+          📄 Download Official PDF Receipt
+        </button>
+        <a href="https://chat.whatsapp.com/EAyCJCpGljE58YpA4cRGHy" target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+          style="padding: 14px 24px; font-size: 1rem;">
+          💬 Join WhatsApp Group
+        </a>
+      </div>
+
+      <!-- Summary Details Card -->
+      <div class="card" id="confirmation-details-card" style="margin-bottom: 28px;">
+        <h2 class="form-section-title"
+          style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 12px; margin-bottom: 20px;">
+          <span>📋</span>
+          <span>Registration Summary &amp; E-Pass Details</span>
+        </h2>
+
+        <!-- Event Track -->
+        <div
+          style="background: var(--bg-surface); padding: 16px; border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="badge badge-tech" style="margin-bottom: 6px;">Technical Event</span>
+              <h3 id="display-event-name" style="font-size: 1.3rem; color: #FFF; margin: 0;">—</h3>
+            </div>
+            <div id="display-nontech-wrap">
+              <span class="badge badge-nontech" style="margin-bottom: 6px;">Non-Technical Event</span>
+              <div id="display-nontech-events" style="font-size: 0.95rem; color: var(--silver-light);">None selected
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Registrant Information -->
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-size: 1.1rem; color: var(--gold-light); margin-bottom: 12px;">Primary Registrant (Team Lead)
+          </h4>
+          <div class="form-grid-3" style="font-size: 0.9rem;">
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">Full Name</span>
+                <strong id="display-lead-name">—</strong>
+              </div>
+            </div>
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">College</span>
+                <strong id="display-lead-college">—</strong>
+              </div>
+            </div>
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">Department</span>
+                <strong id="display-lead-dept">—</strong>
+              </div>
+            </div>
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">Year of Study</span>
+                <strong id="display-lead-year-sec">—</strong>
+              </div>
+            </div>
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">Register Number</span>
+                <strong id="display-lead-regno">—</strong>
+              </div>
+            </div>
+            <div class="highlight-item" style="padding: 10px 14px;">
+              <div class="highlight-text">
+                <span class="text-muted">Phone Number</span>
+                <strong id="display-lead-phone">—</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Members List (If any) -->
+        <div id="display-team-section" style="margin-bottom: 24px;">
+          <h4 style="font-size: 1.1rem; color: var(--gold-light); margin-bottom: 12px;">
+            Team Members (<span id="display-team-count">0</span>)
+          </h4>
+          <div id="display-team-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <p class="text-muted" style="font-size: 0.88rem;">Solo participation (No additional team members).</p>
+          </div>
+        </div>
+
+        <!-- Payment & Verification Summary -->
+        <div
+          style="background: rgba(245, 197, 66, 0.05); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px;">
+          <h4 style="font-size: 1.05rem; color: var(--gold-primary); margin-bottom: 10px;">Payment &amp; Fees Breakdown
+          </h4>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+            <div>
+              <div style="font-size: 0.95rem; color: var(--silver-light);">
+                Total Amount Paid: <strong class="text-gold font-display" id="display-amount-paid"
+                  style="font-size: 1.4rem;">₹200</strong>
+              </div>
+              <div class="text-muted" style="font-size: 0.8rem;" id="display-heads-calc">₹200 × 1 head</div>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 0.8rem;">UPI Reference / UTR:</div>
+              <strong style="font-family: monospace; font-size: 1.05rem; color: #FFF;" id="display-utr">—</strong>
+            </div>
+            <span class="badge badge-success">Payment Submitted</span>
+          </div>
+        </div>
+
+        <!-- Venue & Schedule Reminder -->
+        <div
+          style="background: var(--bg-surface); padding: 14px 18px; border-radius: var(--radius-md); border-left: 3px solid var(--gold-primary);">
+          <strong style="color: #FFF; font-size: 0.92rem;">Event Day Instructions:</strong>
+          <ul
+            style="padding-left: 20px; margin-top: 6px; font-size: 0.85rem; color: var(--silver-muted); line-height: 1.6;">
+            <li>Date: <strong>Friday, 25 September 2026</strong> | Reporting Time: <strong>9:00 AM</strong></li>
+            <li>Venue: <strong>The Kavery Engineering College Campus Auditorium</strong>, Mecheri, Salem (PIN 636453)
+            </li>
+            <li>Please carry this downloaded PDF receipt and your <strong>College ID Card</strong> for verification at
+              the registration desk.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="padding: 24px 0; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+    <div class="container">
+      <p class="text-muted" style="font-size: 0.85rem;">
+        © 2026 ZENTRIX 2K26 • The Kavery Engineering College • Departments of CSE, IT &amp; AI&amp;DS
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/receipt.js"></script>
+</body>
+
+</html>

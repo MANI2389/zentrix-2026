@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZENTRIX 2K26 — National Level Tech Symposium | The Kavery Engineering College</title>
+  <meta name="description"
+    content="ZENTRIX 2K26 — National Level Technical Symposium hosted by The Kavery Engineering College (Autonomous, NAAC A+), Department of CSE, IT &amp; AI&amp;DS. Tuesday, 25 September 2026. Register now!">
+  <meta name="keywords"
+    content="ZENTRIX 2K26, The Kavery Engineering College, National Tech Symposium, Mecheri, Salem, CSE, IT, AIDS, Technical Events, Paper Presentation, Project Expo, Bug Hunters, Prompt Master">
+  <meta name="theme-color" content="#07070a">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zentrix2k26.vercel.app/">
+  <meta property="og:title" content="ZENTRIX 2K26 — National Level Technical Symposium">
+  <meta property="og:description"
+    content="Innovate • Connect • Create | Tuesday, 25 Sep 2026. Host: The Kavery Engineering College (Autonomous, NAAC A+). Cash Prizes, Food &amp; Certificates included.">
+  <meta property="og:image" content="assets/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZENTRIX 2K26 — The Kavery Engineering College">
+  <meta name="twitter:description"
+    content="National Level Technical Symposium | 25 September 2026. Register your team now!">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="site-header">
+    <div class="container navbar-inner">
+      <!-- Left: Logo & College Identity -->
+      <a href="index.html" class="brand-wrap" title="ZENTRIX 2K26 — Home">
+        <img src="assets/college-crest.png" alt="The Kavery Engineering College Logo" class="brand-crest">
+        <div class="brand-info">
+          <span class="brand-title">ZENTRIX 2K26</span>
+          <span class="brand-sub">The Kavery Engineering College</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="nav-toggle" id="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Center: Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#events" class="nav-link">Events</a></li>
+          <li><a href="#perks" class="nav-link">Perks</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="mobile-only"><a href="admin-login.html" class="nav-link text-gold" style="font-weight: 700;">🔐 Admin Login</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: Action Buttons -->
+      <div class="nav-actions">
+        <a href="register.html" class="btn btn-primary" id="nav-register-btn">Register Now</a>
+        <a href="admin-login.html" class="btn btn-admin" id="nav-admin-btn" title="Symposium Administrator Portal">Admin
+          Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <!-- Institution Branding Strip -->
+        <div class="hero-college-strip">
+          <img src="assets/college-crest.png" alt="Crest" style="height: 24px; width: auto;">
+          <span class="college-name">The Kavery Engineering College</span>
+          <span style="color: var(--silver-dark);">•</span>
+          <span class="dept-pill">Autonomous</span>
+          <span class="badge badge-naac">NAAC A+ ACCREDITED</span>
+          <span style="color: var(--silver-dark);">•</span>
+          <span class="dept-pill">Dept of CSE, IT &amp; AI&amp;DS</span>
+        </div>
+
+        <!-- Symposium Title -->
+        <h1 class="hero-title text-gold-gradient">ZENTRIX 2K26</h1>
+
+        <!-- Themes & Taglines -->
+        <p class="hero-theme">Innovate • Connect • Create</p>
+        <p class="hero-tagline">“Build • Learn • Grow”</p>
+
+        <!-- Date, Time & Venue Strip -->
+        <div class="hero-meta-bar">
+          <div class="meta-item">
+            <span class="meta-icon">📅</span>
+            <div>
+              <strong>Friday, 25 Sep 2026</strong>
+              <div class="text-muted" style="font-size: 0.8rem;">9:00 AM – 4:00 PM IST</div>
+            </div>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <span class="meta-icon">📍</span>
+            <div>
+              <strong>The kavery Engineering college</strong>
+              <div class="text-muted" style="font-size: 0.8rem;">Mecheri, Salem Dt, PIN 636453</div>
+            </div>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <span class="meta-icon">🎟️</span>
+            <div>
+              <strong class="text-gold">₹200 per head</strong>
+              <div class="text-muted" style="font-size: 0.8rem;">Food + Certificate + Cash Prizes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Countdown Component -->
+        <div class="countdown-box" id="countdown-container" aria-label="Event Countdown">
+          <div class="countdown-label" id="cd-label">⚡ Live Symposium Countdown ⚡</div>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <span class="countdown-val" id="cd-days">00</span>
+              <span class="countdown-text">Days</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-val" id="cd-hours">00</span>
+              <span class="countdown-text">Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-val" id="cd-minutes">00</span>
+              <span class="countdown-text">Minutes</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-val" id="cd-seconds">00</span>
+              <span class="countdown-text">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Hero Actions -->
+        <div class="hero-actions-wrap" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+          <a href="register.html" class="btn btn-primary" style="padding: 14px 34px; font-size: 1.15rem;">
+            Register Your Team Now →
+          </a>
+          <a href="#events" class="btn btn-outline" style="padding: 14px 28px; font-size: 1.05rem;">
+            Explore Events
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="section-padding" style="border-top: 1px solid rgba(212, 175, 55, 0.15);">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-subtitle">About Symposium</span>
+          <h2 class="section-title text-gold-gradient">The Flagship National Tech Symposium</h2>
+          <p class="section-desc">
+            Organized collaboratively by the Departments of CSE, IT &amp; AI&amp;DS at The Kavery Engineering College.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left Column: Story & Department highlights -->
+          <div class="about-text">
+            <h3 style="font-size: 1.8rem; margin-bottom: 14px; color: var(--silver-bright);">
+              Where Visionary Minds <span class="text-gold">Innovate, Connect &amp; Create</span>
+            </h3>
+            <p>
+              <strong>ZENTRIX 2K26</strong> is the premier national-level technical symposium presented by
+              <strong>The Kavery Engineering College (Autonomous, NAAC A+ Accredited)</strong>. Powered by the unified
+              efforts of the <strong>Department of Computer Science &amp; Engineering</strong>,
+              <strong>Department of Information Technology</strong>, and <strong>Department of Artificial Intelligence
+                &amp; Data Science</strong>,
+              this edition is meticulously designed around the ethos: <em>“Build • Learn • Grow”</em>.
+            </p>
+            <p>
+              Whether you are pitching a breakthrough startup model, showcasing an IoT prototype, hunting elusive
+              software bugs, prompt-crafting generative AI agents, or competing in high-energy cinematic and meme
+              challenges,
+              ZENTRIX 2K26 provides the definitive collegiate platform to elevate your technical stature and compete
+              with
+              the brightest engineering minds.
+            </p>
+
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">🏛️</span>
+                <div class="highlight-text">
+                  <strong>Autonomous &amp; NAAC A+</strong>
+                  <span>Accredited excellence in engineering education</span>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🤝</span>
+                <div class="highlight-text">
+                  <strong>CSE, IT &amp; AI&amp;DS</strong>
+                  <span>Tri-department collaborative engineering excellence</span>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🏆</span>
+                <div class="highlight-text">
+                  <strong>Cash Prizes &amp; Kits</strong>
+                  <span>Lucrative awards for winners in every track</span>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">🍱</span>
+                <div class="highlight-text">
+                  <strong>Hospitality &amp; Food</strong>
+                  <span>Delicious lunch, refreshments &amp; certs included</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Key Metric Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">8+</div>
+              <div class="stat-label">Flagship Events</div>
+              <p class="text-muted" style="font-size: 0.8rem; margin-top: 6px;">4 Tech &amp; 4 Non-Tech Tracks</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">Cash prizes</div>
+              <div class="stat-label">Cash Pool &amp; Perks</div>
+              <p class="text-muted" style="font-size: 0.8rem; margin-top: 6px;">Cash prizes for champions</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">1000+</div>
+              <div class="stat-label">Expected Innovators</div>
+              <p class="text-muted" style="font-size: 0.8rem; margin-top: 6px;">Colleges across South India</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">A+</div>
+              <div class="stat-label">NAAC Accreditation</div>
+              <p class="text-muted" style="font-size: 0.8rem; margin-top: 6px;">Autonomous Institution</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EVENTS SECTION ================= -->
+    <section id="events" class="section-padding" style="background: rgba(10, 10, 16, 0.7);">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-subtitle">Battle of Minds</span>
+          <h2 class="section-title text-gold-gradient">Symposium Events</h2>
+          <p class="section-desc">
+            Compete across technical and creative domains.
+            <strong class="text-gold">Please note:</strong> Each participant / team selects
+            <strong>ONE Technical Event</strong> during registration, and can participate in Non-Technical events.
+          </p>
+        </div>
+
+        <div class="events-category-grid">
+          <!-- COLUMN 1: TECHNICAL EVENTS -->
+          <div class="event-column">
+            <div class="event-col-header">
+              <div class="event-col-title">
+                <span style="font-size: 1.6rem;">⚡</span>
+                <span>Technical Events</span>
+              </div>
+              <span class="badge badge-tech">Choose ONE on Registration</span>
+            </div>
+
+            <div class="event-list">
+              <!-- Event 1: Startup Spark -->
+              <div class="event-card">
+                <div class="event-icon-box" title="Startup Spark">🚀</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Startup Spark (PPT)</h3>
+                    <span class="badge badge-tech" style="font-size: 0.72rem;">Idea &amp; Business Pitch</span>
+                  </div>
+                  <p class="event-desc">
+                    maxmum - 3 members.Pitch your groundbreaking startup vision, MVP, or technological business model to
+                    industry
+                    mentors. Evaluated on innovation, market scalability, revenue model, and presentation impact.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 2: Project Expo -->
+              <div class="event-card">
+                <div class="event-icon-box" title="Project Expo">💡</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Project Expo</h3>
+                    <span class="badge badge-tech" style="font-size: 0.72rem;">Hardware / Software Prototype</span>
+                  </div>
+                  <p class="event-desc">
+                    Exhibit your working engineering prototypes, IoT innovations, machine learning applications, or
+                    full-stack platforms. Live demonstration and architecture inspection by expert evaluators.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 3: Bug Hunters -->
+              <div class="event-card">
+                <div class="event-icon-box" title="Bug Hunters">🐛</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Bug Hunters</h3>
+                    <span class="badge badge-tech" style="font-size: 0.72rem;">Code Debugging Sprint</span>
+                  </div>
+                  <p class="event-desc">
+                    Put your code diagnostic skills to the ultimate test. Find sneaky memory leaks, concurrency issues,
+                    algorithmic pitfalls, and syntax hazards across Python, C/C++, and Java under strict time limits.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 4: Prompt Master -->
+              <div class="event-card">
+                <div class="event-icon-box" title="Prompt Master">🤖</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Prompt Master</h3>
+                    <span class="badge badge-tech" style="font-size: 0.72rem;">Generative AI Arena</span>
+                  </div>
+                  <p class="event-desc">
+                    Engineer high-precision prompts for state-of-the-art LLMs and diffusion models. Solve multi-hop
+                    logic
+                    puzzles, automated code synthesis challenges, and optimize token efficiency against complex tasks.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMN 2: NON-TECHNICAL EVENTS -->
+          <div class="event-column">
+            <div class="event-col-header">
+              <div class="event-col-title">
+                <span style="font-size: 1.6rem;">🎯</span>
+                <span>Non-Technical Events</span>
+              </div>
+              <span class="badge badge-nontech">Open For All</span>
+            </div>
+
+            <div class="event-list">
+              <!-- Event 1: Cinespark -->
+              <div class="event-card">
+                <div class="event-icon-box"
+                  style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.35); color: #C084FC;"
+                  title="Cinespark">🎬</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Cinespark (short film)</h3>
+                    <span class="badge badge-nontech" style="font-size: 0.72rem;">Cinema &amp; Film Trivia</span>
+                  </div>
+                  <p class="event-desc">
+                    Timing 5-6 Minutes.Step onto the red carpet of cinematic knowledge. Test your acumen in movie
+                    trivia, soundtrack
+                    decoding, famous dialogue completion, and visual narrative deconstruction.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 2: Meme Creation -->
+              <div class="event-card">
+                <div class="event-icon-box"
+                  style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.35); color: #C084FC;"
+                  title="Meme Creation">🎭</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Meme Creation</h3>
+                    <span class="badge badge-nontech" style="font-size: 0.72rem;">Viral Humor &amp; Creativity</span>
+                  </div>
+                  <p class="event-desc">
+                    Transform developer struggles, engineering college life, and tech industry absurdities into viral
+                    meme
+                    art. Evaluated on comedic timing, originality, cultural relevance, and visual design.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 3: Logo Hunting -->
+              <div class="event-card">
+                <div class="event-icon-box"
+                  style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.35); color: #C084FC;"
+                  title="Logo Hunting">🔍</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Logo Hunting</h3>
+                    <span class="badge badge-nontech" style="font-size: 0.72rem;">Visual Sleuth</span>
+                  </div>
+                  <p class="event-desc">
+                    Unravel obscured, altered, or minimalist logos of global tech giants, startups, and open-source
+                    foundations.
+                    Race against time to identify obscure iconography and corporate identities.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Event 4: Video Quiz -->
+              <div class="event-card">
+                <div class="event-icon-box"
+                  style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.35); color: #C084FC;"
+                  title="Video Quiz">📽️</div>
+                <div class="event-details">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;">
+                    <h3 class="event-name">Video Quiz</h3>
+                    <span class="badge badge-nontech" style="font-size: 0.72rem;">Audio-Visual Sprint</span>
+                  </div>
+                  <p class="event-desc">
+                    Keep your eyes and ears peeled. Rapid-fire audiovisual questions based on fast video snippets,
+                    soundtrack reversals, easter egg spot-the-differences, and multimedia perception.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action strip below events -->
+        <div class="card"
+          style="margin-top: 40px; text-align: center; border-color: var(--gold-border-bright); background: linear-gradient(135deg, rgba(245, 197, 66, 0.08) 0%, rgba(19, 19, 30, 0.95) 100%);">
+          <h3 style="font-size: 1.5rem; margin-bottom: 8px;" class="text-gold-gradient">Ready to Showcase Your Talent?
+          </h3>
+          <p class="text-muted" style="margin-bottom: 20px; font-size: 0.95rem;">
+            Registration is only ₹200 per head (includes Food, Kit, Participation Certificate &amp; Cash Prizes). Max 5
+            team members per registration.
+          </p>
+          <a href="register.html" class="btn btn-primary" style="padding: 12px 30px;">
+            Choose Your Event &amp; Register Now →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PERKS SECTION ================= -->
+    <section id="perks" class="section-padding">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-subtitle">Privileges</span>
+          <h2 class="section-title text-gold-gradient">What Every Participant Receives</h2>
+          <p class="section-desc">
+            All registered candidates are entitled to the full hospitality and official perks package included in the
+            ₹200 registration fee.
+          </p>
+        </div>
+
+        <div class="perks-grid">
+          <!-- Perk 1: Food & Refreshments -->
+          <div class="card perk-card">
+            <div class="perk-icon" title="Food & Refreshments">🍱</div>
+            <span class="badge badge-naac" style="margin-bottom: 14px;">Included with Registration</span>
+            <h3 class="perk-title">Food &amp; Refreshments</h3>
+            <p class="perk-desc">
+              Enjoy hygienic and delicious refreshments upon arrival, a wholesome lunch buffet, and high tea to keep you
+              energized through all competitive rounds.
+            </p>
+          </div>
+
+          <!-- Perk 2: Participation Certificate -->
+          <div class="card perk-card">
+            <div class="perk-icon" title="Participation Certificate">📜</div>
+            <span class="badge badge-tech" style="margin-bottom: 14px;">Accredited Credential</span>
+            <h3 class="perk-title">Participation Certificate</h3>
+            <p class="perk-desc">
+              Receive a formal, hardcopy Certificate of Participation officially endorsed by The Kavery Engineering
+              College (Autonomous, NAAC A+) and HoDs of CSE, IT &amp; AI&amp;DS.
+            </p>
+          </div>
+
+          <!-- Perk 3: Cash Prize for Winners -->
+          <div class="card perk-card">
+            <div class="perk-icon" title="Cash Prize for Winners">🏆</div>
+            <span class="badge badge-warning" style="margin-bottom: 14px;">cash prizes</span>
+            <h3 class="perk-title">Cash Prizes for Winners</h3>
+            <p class="perk-desc">
+              Stand atop the podium and win exciting cash prizes, winner trophies, and certificates of merit awarded for
+              1st and 2nd positions across all technical &amp; non-technical events.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Institution -->
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <img src="assets/college-crest.png" alt="The Kavery Engineering College Logo"
+              style="height: 52px; width: auto;">
+            <div>
+              <h3 style="margin-bottom: 2px;">ZENTRIX 2K26</h3>
+              <span class="text-gold" style="font-size: 0.82rem; font-weight: 600;">The Kavery Engineering
+                College</span>
+            </div>
+          </div>
+          <p class="footer-address">
+            <strong>Campus Location:</strong><br>
+            M.Kalipatti (PO), Mecheri, Mettur (Tk),<br>
+            Salem District, Tamil Nadu, India — 636453.<br>
+            <span class="text-muted" style="font-size: 0.82rem;">(Autonomous • NAAC A+ Grade • Counselling Code:
+              2625)</span>
+          </p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <span class="badge badge-naac">Autonomous</span>
+            <span class="badge badge-tech">Dept: CSE • IT • AI&amp;DS</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-links">
+          <h4>Quick Navigation</h4>
+          <ul class="footer-link-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Symposium</a></li>
+            <li><a href="#events">Technical Events</a></li>
+            <li><a href="#events">Non-Technical Events</a></li>
+            <li><a href="#perks">Perks &amp; Benefits</a></li>
+            <li><a href="register.html" class="text-gold">Register Now (₹200)</a></li>
+            <li><a href="admin-login.html" class="text-muted">Admin Security Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: WhatsApp Community & Helpdesk -->
+        <div class="footer-contact">
+          <h4>Join WhatsApp Group</h4>
+          <p class="text-muted" style="font-size: 0.86rem; margin-bottom: 12px;">
+            Scan to join the official ZENTRIX'26 participants community for live updates, queries, and schedule alerts:
+          </p>
+
+          <div class="footer-qr-card">
+            <img src="assets/whatsapp-qr.png" alt="ZENTRIX'26 WhatsApp Group QR Code" class="footer-qr-img">
+            <div>
+              <strong style="display: block; font-size: 0.95rem; color: #FFF; margin-bottom: 4px;">ZENTRIX'26
+                Community</strong>
+              <span class="text-muted" style="display: block; font-size: 0.78rem; margin-bottom: 8px;">Official
+                Participant Group</span>
+              <a href="https://chat.whatsapp.com/EAyCJCpGljE58YpA4cRGHy" target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+                style="padding: 6px 14px; font-size: 0.8rem; background: #25D366; color: #0B0B12; border-color: #25D366; font-weight: 700;">
+                💬 Join WhatsApp Group ↗
+              </a>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; font-size: 0.85rem; line-height: 1.8;">
+            <strong style="color: var(--gold-light);">Symposium Helpdesk:</strong><br>
+            📞 Phone: <a href="tel:+917010183579" class="text-gold" style="text-decoration: underline;">+91 7010183579</a> (Student Convenor)<br>
+            📞 Phone: <a href="tel:+918940021088" class="text-gold" style="text-decoration: underline;">+91 8940021088</a> (Student Convenor)<br>
+            📞 Phone: <a href="tel:+917904708317" class="text-gold" style="text-decoration: underline;">+91 7904708317</a> (Staff Convenor)<br>
+            ✉️ Email: <a href="mailto:zentrix2k2six@gmail.com" class="text-gold" style="text-decoration: underline;">zentrix2k2six@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 ZENTRIX 2K26. Hosted by Department of CSE, IT &amp; AI&amp;DS, The Kavery Engineering College. All
+          rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/countdown.js"></script>
+</body>
+
+</html>

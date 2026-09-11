@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register for ZENTRIX 2K26 | The Kavery Engineering College</title>
+  <meta name="description"
+    content="Official registration portal for ZENTRIX 2K26 technical symposium at The Kavery Engineering College. Register solo or as a team.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="navbar" id="site-header">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-wrap">
+        <img src="assets/college-crest.png" alt="The Kavery Engineering College Crest" class="brand-crest">
+        <div class="brand-info">
+          <span class="brand-title">ZENTRIX 2K26</span>
+          <span class="brand-sub">Registration Portal</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary" id="nav-back-home-btn">← Back<span class="desktop-only"> to Home</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="container section-padding">
+    <!-- Header Title & Recap -->
+    <div class="section-title-wrap">
+      <span class="section-subtitle">National Level Tech Symposium</span>
+      <h1 class="section-title text-gold-gradient">Register for ZENTRIX 2K26</h1>
+      <p class="section-desc">
+        <strong>Friday, 25 Sep 2026 • 9:00 AM – 4:00 PM</strong><br>
+        The Kavery Engineering College Campus (Autonomous, NAAC A+), Mecheri, Salem — 636453<br>
+        <span class="text-gold" style="font-weight: 700;">Registration Fee: ₹200 per head</span>
+        (Includes Delicious Lunch, Kit &amp; Hardcopy Certificate)
+      </p>
+    </div>
+
+    <div class="form-container" id="registration-form-wrap">
+
+      <!-- Alert Banner for Errors / Status -->
+      <div id="form-error-banner" class="alert-banner alert-error" style="display: none;" role="alert">
+        <span>⚠️</span>
+        <div id="form-error-text">Please resolve the highlighted errors before submitting.</div>
+      </div>
+
+      <!-- ================= REGISTRATION FORM ================= -->
+      <form id="registration-form" class="card" novalidate>
+
+        <!-- SECTION 1: PRIMARY REGISTRANT DETAILS -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span>👤</span>
+            <span>1. Primary Registrant Details (Team Lead)</span>
+          </h2>
+
+          <div class="form-grid-2">
+            <div class="form-group" id="group-fullName">
+              <label class="form-label" for="full_name">Full Name <span class="req">*</span></label>
+              <input type="text" id="full_name" name="full_name" class="form-control" placeholder="e.g. Anand Kumar S"
+                required autocomplete="name">
+              <span class="field-error">Please enter your full name.</span>
+            </div>
+
+            <div class="form-group" id="group-collegeName">
+              <label class="form-label" for="college_name">College Name <span class="req">*</span></label>
+              <input type="text" id="college_name" name="college_name" class="form-control"
+                placeholder="e.g. Government College of Engineering, Salem" required>
+              <span class="field-error">Please enter your college name.</span>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group" id="group-department">
+              <label class="form-label" for="department">Department <span class="req">*</span></label>
+              <input type="text" id="department" name="department" class="form-control"
+                placeholder="e.g. CSE / IT / AI&amp;DS / ECE" required>
+              <span class="field-error">Please enter your department.</span>
+            </div>
+
+            <div class="form-group" id="group-year">
+              <label class="form-label" for="year">Year of Study <span class="req">*</span></label>
+              <select id="year" name="year" class="form-control" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+              <span class="field-error">Please select your year of study.</span>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group" id="group-registerNumber">
+              <label class="form-label" for="register_number">Register Number <span class="req">*</span></label>
+              <input type="text" id="register_number" name="register_number" class="form-control"
+                placeholder="e.g. 611221104001" required>
+              <span class="field-error">Please enter your register number.</span>
+            </div>
+
+            <div class="form-group" id="group-email">
+              <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="anand@gmail.com" required
+                autocomplete="email">
+              <span class="field-error">Please provide a valid email address.</span>
+            </div>
+
+            <div class="form-group" id="group-phone">
+              <label class="form-label" for="phone">Phone Number (WhatsApp) <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="10-digit mobile number"
+                maxlength="10" required autocomplete="tel">
+              <span class="field-error">Please enter a valid 10-digit mobile number.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: EVENT SELECTION -->
+        <div class="form-section">
+          <!-- 2A: Technical Event (Mandatory Single Choice) -->
+          <div
+            style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+            <h2 class="form-section-title" style="margin-bottom: 0;">
+              <span>⚡</span>
+              <span>2A. Select Technical Event <span class="req">*</span></span>
+            </h2>
+            <span class="badge badge-tech">Choose exactly ONE event</span>
+          </div>
+          <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 16px;">
+            Select the primary technical competition your team will compete in:
+          </p>
+
+          <div class="radio-cards-grid" id="event-selection-grid">
+            <!-- Event Option 1 -->
+            <label class="radio-card" for="event-startup-spark">
+              <input type="radio" name="event_name" id="event-startup-spark" value="Startup Spark" required>
+              <div class="radio-card-content">
+                <div class="radio-card-circle"></div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF; font-size: 1.05rem;">🚀 Startup Spark</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">Idea pitch &amp; business model competition</div>
+                </div>
+              </div>
+            </label>
+
+            <!-- Event Option 2 -->
+            <label class="radio-card" for="event-project-expo">
+              <input type="radio" name="event_name" id="event-project-expo" value="Project Expo">
+              <div class="radio-card-content">
+                <div class="radio-card-circle"></div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF; font-size: 1.05rem;">💡 Project Expo</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">Hardware / Software prototype showcase</div>
+                </div>
+              </div>
+            </label>
+
+            <!-- Event Option 3 -->
+            <label class="radio-card" for="event-bug-hunters">
+              <input type="radio" name="event_name" id="event-bug-hunters" value="Bug Hunters">
+              <div class="radio-card-content">
+                <div class="radio-card-circle"></div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF; font-size: 1.05rem;">🐛 Bug Hunters</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">Fast-paced code debugging sprint</div>
+                </div>
+              </div>
+            </label>
+
+            <!-- Event Option 4 -->
+            <label class="radio-card" for="event-prompt-master">
+              <input type="radio" name="event_name" id="event-prompt-master" value="Prompt Master">
+              <div class="radio-card-content">
+                <div class="radio-card-circle"></div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF; font-size: 1.05rem;">🤖 Prompt Master</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">Generative AI prompt engineering challenge</div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div id="event-error" class="field-error" style="margin-top: 8px;">Please select one technical event to
+            participate in.</div>
+
+          <!-- 2B: Non-Technical Event (Single Choice) -->
+          <div style="margin-top: 28px; padding-top: 20px; border-top: 1px dashed rgba(255, 255, 255, 0.08);">
+            <div
+              style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+              <h3 style="font-size: 1.15rem; color: #C084FC; display: flex; align-items: center; gap: 8px; margin: 0;">
+                <span>🎯</span>
+                <span>2B. Select Non-Technical Event (Optional)</span>
+              </h3>
+              <span class="badge badge-nontech">Choose ONE event</span>
+            </div>
+            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 14px;">
+              Choose ONE non-technical event your team will participate in (or select None):
+            </p>
+
+            <div class="radio-cards-grid" id="nontech-events-grid">
+              <!-- Non-Tech 1 -->
+              <label class="radio-card-nontech" for="nontech-cinespark">
+                <input type="radio" name="non_technical_event" id="nontech-cinespark" value="Cinespark">
+                <div class="radio-card-content">
+                  <div class="radio-card-circle"></div>
+                  <div>
+                    <div style="font-weight: 700; color: #FFF; font-size: 1rem;">🎬 Cinespark</div>
+                    <div class="text-muted" style="font-size: 0.78rem;">Cinema trivia &amp; film deconstruction</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Non-Tech 2 -->
+              <label class="radio-card-nontech" for="nontech-meme">
+                <input type="radio" name="non_technical_event" id="nontech-meme" value="Meme Creation">
+                <div class="radio-card-content">
+                  <div class="radio-card-circle"></div>
+                  <div>
+                    <div style="font-weight: 700; color: #FFF; font-size: 1rem;">🎭 Meme Creation</div>
+                    <div class="text-muted" style="font-size: 0.78rem;">Tech humor &amp; viral meme battle</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Non-Tech 3 -->
+              <label class="radio-card-nontech" for="nontech-logo">
+                <input type="radio" name="non_technical_event" id="nontech-logo" value="Logo Hunting">
+                <div class="radio-card-content">
+                  <div class="radio-card-circle"></div>
+                  <div>
+                    <div style="font-weight: 700; color: #FFF; font-size: 1rem;">🔍 Logo Hunting</div>
+                    <div class="text-muted" style="font-size: 0.78rem;">Brand recognition &amp; visual sleuth</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Non-Tech 4 -->
+              <label class="radio-card-nontech" for="nontech-quiz">
+                <input type="radio" name="non_technical_event" id="nontech-quiz" value="Video Quiz">
+                <div class="radio-card-content">
+                  <div class="radio-card-circle"></div>
+                  <div>
+                    <div style="font-weight: 700; color: #FFF; font-size: 1rem;">📽️ Video Quiz</div>
+                    <div class="text-muted" style="font-size: 0.78rem;">Rapid audiovisual challenge</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- Non-Tech 5 (None / Skip) -->
+              <label class="radio-card-nontech" for="nontech-none" style="grid-column: span 2;">
+                <input type="radio" name="non_technical_event" id="nontech-none" value="None">
+                <div class="radio-card-content" style="justify-content: center; opacity: 0.85;">
+                  <div class="radio-card-circle"></div>
+                  <div>
+                    <div style="font-weight: 600; color: var(--silver-light); font-size: 0.95rem;">🚫 None (Technical
+                      Track Only)</div>
+                    <div class="text-muted" style="font-size: 0.76rem;">Participate only in the selected technical event
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: TEAM MEMBERS (OPTIONAL, UP TO 5 MEMBERS) -->
+        <div class="form-section">
+          <div
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+            <div>
+              <h2 class="form-section-title" style="margin-bottom: 2px;">
+                <span>👥</span>
+                <span>3. Team Members (Optional)</span>
+              </h2>
+              <p class="text-muted" style="font-size: 0.82rem;">
+                Participating as a team? Add up to 5 additional members. Solo participation is also welcome!
+              </p>
+            </div>
+            <button type="button" id="add-member-btn" class="btn btn-outline"
+              style="font-size: 0.85rem; padding: 8px 16px;">
+              + Add Team Member
+            </button>
+          </div>
+
+          <!-- Dynamic Container for Team Rows -->
+          <div id="team-members-container" aria-live="polite">
+            <!-- Rows dynamically injected via form.js -->
+          </div>
+
+          <div class="text-muted" style="font-size: 0.8rem; margin-top: 6px;" id="team-counter-text">
+            Current Team Size: <strong class="text-gold" id="team-headcount-badge">1 (Solo)</strong> — Max 5 additional
+            members allowed.
+          </div>
+        </div>
+
+        <!-- SECTION 4: LIVE TOTAL AMOUNT PAYABLE -->
+        <div class="payment-summary-card">
+          <div>
+            <span class="amount-label">Total Amount Payable:</span>
+            <div class="amount-breakdown" id="amount-calc-breakdown">
+              Calculation: ₹200 × 1 head = ₹200
+            </div>
+            <div class="text-muted" style="font-size: 0.78rem; margin-top: 4px;">
+              (Includes food, kits &amp; certificates for all registered heads)
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div class="amount-value text-gold" id="total-amount-display">₹200</div>
+            <input type="hidden" name="total_amount" id="total_amount_hidden" value="200">
+            <span class="badge badge-naac" id="payment-status-badge">₹200 / Head</span>
+          </div>
+        </div>
+
+        <!-- ================= PAYMENT QR BOX (ABOVE PAYMENT SECTION) ================= -->
+        <div class="payment-qr-wrap" id="payment-qr-container" style="margin-bottom: 24px;">
+          <img src="assets/payment-qr.png" alt="Google Pay / PhonePe / Paytm UPI QR Code" class="payment-qr-img"
+            id="payment-qr-image">
+          <div style="flex: 1; min-width: 0; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span class="badge badge-naac">Official Payment Gateway</span>
+              <span class="badge badge-success">UPI Verified</span>
+            </div>
+            <h3 style="font-size: 1.25rem; color: #FFF; margin-bottom: 6px;">
+              Scan &amp; Pay Exact Total Amount
+            </h3>
+            <p class="text-muted" style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 12px;">
+              Scan this QR code using <strong>GPay, PhonePe, Paytm</strong> or any UPI app. Pay the exact
+              <strong class="text-gold">Total Amount Payable (<span id="qr-payable-amount">₹200</span>)</strong>
+              shown above, then upload your payment screenshot and enter the <strong>12-digit UTR</strong> below.
+            </p>
+
+            <div class="upi-copy-box">
+              <span style="font-size: 0.85rem; color: var(--silver-mid);">UPI ID: <strong class="text-gold"
+                  id="upi-id-text">vasukixlnc@okaxis</strong></span>
+              <button type="button" id="copy-upi-btn" class="btn btn-admin"
+                style="padding: 4px 10px; font-size: 0.75rem;" title="Copy UPI ID">Copy</button>
+            </div>
+            <div class="text-muted" style="font-size: 0.75rem; margin-top: 6px;">Payee Name: Vasuki Rajkumar (Symposium
+              Organizing Team)</div>
+          </div>
+        </div>
+
+        <!-- SECTION 5: PAYMENT TRANSACTION / UTR & SCREENSHOT -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span>💳</span>
+            <span>5. Payment Verification</span>
+          </h2>
+
+          <div class="form-grid-2">
+            <!-- 12-digit UTR -->
+            <div class="form-group" id="group-paymentRef">
+              <label class="form-label" for="payment_ref">UPI Transaction ID / UTR Number <span
+                  class="req">*</span></label>
+              <input type="text" id="payment_ref" name="payment_ref" class="form-control"
+                placeholder="e.g. 425689123456 (12 digits)" maxlength="30" required>
+              <span class="form-hint">12-digit number found under "UPI Ref No" in your payment receipt.</span>
+              <span class="field-error">Please enter the valid payment UTR number.</span>
+            </div>
+
+            <!-- Screenshot Upload -->
+            <div class="form-group" id="group-paymentScreenshot">
+              <label class="form-label" for="payment_screenshot">Payment Screenshot (Optional / Recommended)</label>
+              <div class="upload-dropzone" id="upload-dropzone-box">
+                <input type="file" id="payment_screenshot" name="payment_screenshot" accept="image/*">
+                <div id="dropzone-prompt">
+                  <span style="font-size: 1.6rem; display: block; margin-bottom: 4px;">📸</span>
+                  <strong style="color: var(--silver-bright); font-size: 0.88rem;">Click or Drag Payment Screenshot
+                    here</strong>
+                  <span class="text-muted" style="display: block; font-size: 0.76rem; margin-top: 2px;">Supports PNG,
+                    JPG, JPEG (Max 5MB)</span>
+                </div>
+              </div>
+
+              <!-- Live Preview after file selected -->
+              <div class="upload-preview-wrap" id="upload-preview-wrap">
+                <img src="" alt="Screenshot Preview" class="upload-preview-img" id="upload-preview-img">
+                <div style="flex: 1; overflow: hidden;">
+                  <strong id="preview-filename"
+                    style="font-size: 0.85rem; color: #FFF; display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"></strong>
+                  <span id="preview-filesize" class="text-muted" style="font-size: 0.75rem;"></span>
+                </div>
+                <button type="button" id="remove-screenshot-btn" class="btn btn-danger"
+                  style="padding: 4px 8px; font-size: 0.75rem;">✕ Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 6: TERMS & CONDITIONS CHECKBOX -->
+        <div class="form-section" style="padding-bottom: 8px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <input type="checkbox" id="terms" name="terms" required
+              style="margin-top: 4px; width: 18px; height: 18px; accent-color: var(--gold-primary); cursor: pointer;">
+            <label for="terms" style="font-size: 0.88rem; color: var(--silver-mid); cursor: pointer;">
+              I confirm that all details provided are accurate and the UPI transaction UTR entered corresponds to the
+              exact fee of <strong class="text-gold" id="terms-amount-text">₹200</strong> paid to
+              <strong>vasukixlnc@okaxis</strong>. I agree to abide by the rules and code of conduct of ZENTRIX 2K26.
+              <span class="req">*</span>
+            </label>
+          </div>
+          <span id="terms-error" class="field-error" style="margin-top: 6px;">You must accept the terms to
+            proceed.</span>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <div style="margin-top: 24px; text-align: center;">
+          <button type="submit" id="submit-btn" class="btn btn-primary"
+            style="width: 100%; max-width: 450px; padding: 16px 32px; font-size: 1.15rem;" disabled>
+            Complete Registration &amp; Generate Receipt →
+          </button>
+          <p class="text-muted" style="font-size: 0.8rem; margin-top: 10px;" id="submit-help-text">
+            Submit button activates automatically once all required fields and payment reference are filled.
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer"
+    style="padding: 30px 0; border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center; margin-top: 40px;">
+    <div class="container">
+      <p class="text-muted" style="font-size: 0.85rem;">
+        © 2026 ZENTRIX 2K26 • The Kavery Engineering College • Department of CSE, IT &amp; AI&amp;DS
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/form.js"></script>
+</body>
+
+</html>
