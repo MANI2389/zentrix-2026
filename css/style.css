@@ -601,7 +601,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 .countdown-box {
   max-width: 680px;
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   padding: 24px;
   border-radius: var(--radius-xl);
   background: rgba(15, 15, 24, 0.75);
@@ -649,6 +649,170 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--silver-muted);
+}
+
+/* ==========================================================================
+   Registration Deadline Elements
+   ========================================================================== */
+.countdown-deadline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: rgba(245, 197, 66, 0.08);
+  border: 1px solid var(--gold-border-bright);
+  box-shadow: 0 0 25px rgba(245, 197, 66, 0.15), inset 0 0 15px rgba(245, 197, 66, 0.05);
+  border-radius: 999px;
+  padding: 10px 24px;
+  margin: 0 auto 30px;
+  font-size: 0.95rem;
+  color: var(--silver-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: deadlineGlow 3s ease-in-out infinite alternate;
+  width: fit-content;
+  max-width: 92%;
+}
+
+@keyframes deadlineGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(245, 197, 66, 0.12);
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(245, 197, 66, 0.35);
+    border-color: rgba(245, 197, 66, 0.85);
+  }
+}
+
+.countdown-deadline-pill .deadline-pill-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.countdown-deadline-pill .deadline-pill-label {
+  color: var(--silver-mid);
+  font-weight: 500;
+}
+
+.countdown-deadline-pill .deadline-pill-date {
+  color: var(--gold-primary);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.countdown-deadline-pill .deadline-pill-time {
+  color: var(--silver-muted);
+  font-size: 0.82rem;
+}
+
+.countdown-deadline-pill .deadline-pill-badge {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Pulsing Beacon */
+.pulse-beacon {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beacon-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #EF4444;
+  border-radius: 50%;
+}
+
+.beacon-ring {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #EF4444;
+  animation: beaconPulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  opacity: 0.8;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Registration Page Top Alert Banner */
+.reg-deadline-alert {
+  max-width: 820px;
+  margin: 0 auto 32px;
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.12) 0%, rgba(22, 19, 13, 0.9) 50%, rgba(15, 15, 24, 0.96) 100%);
+  border: 1px solid var(--gold-border-bright);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 25px rgba(245, 197, 66, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.reg-deadline-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.reg-deadline-badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 6px 14px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.reg-deadline-tag {
+  color: #F87171;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.reg-deadline-message {
+  font-size: 0.98rem;
+  color: var(--silver-light);
+  line-height: 1.45;
+}
+
+.text-gold-bright {
+  color: var(--gold-primary);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(245, 197, 66, 0.4);
+}
+
+.reg-deadline-note {
+  color: var(--silver-muted);
+  font-size: 0.84rem;
+  margin-left: 4px;
 }
 
 /* ==========================================================================
@@ -1747,7 +1911,7 @@ select.form-control {
   /* Countdown Component */
   .countdown-box {
     padding: 16px 12px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   }
   .countdown-grid {
     gap: 8px;
@@ -1761,6 +1925,26 @@ select.form-control {
   .countdown-text {
     font-size: 0.68rem;
     letter-spacing: 0.8px;
+  }
+
+  .countdown-deadline-pill {
+    padding: 8px 16px;
+    margin-bottom: 24px;
+    font-size: 0.88rem;
+    gap: 8px;
+    text-align: center;
+  }
+  .countdown-deadline-pill .deadline-pill-date {
+    font-size: 1.05rem;
+  }
+  .reg-deadline-alert {
+    padding: 14px 16px;
+    margin-bottom: 24px;
+  }
+  .reg-deadline-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   /* About & Highlights */
