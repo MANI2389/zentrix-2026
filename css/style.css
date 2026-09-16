@@ -659,7 +659,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 16px;
   background: rgba(245, 197, 66, 0.08);
   border: 1px solid var(--gold-border-bright);
   box-shadow: 0 0 25px rgba(245, 197, 66, 0.15), inset 0 0 15px rgba(245, 197, 66, 0.05);
@@ -672,7 +672,53 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(12px);
   animation: deadlineGlow 3s ease-in-out infinite alternate;
   width: fit-content;
-  max-width: 92%;
+  max-width: 95%;
+}
+
+.deadline-pill-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.deadline-pill-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(245, 197, 66, 0.35);
+}
+
+.deadline-onspot-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.onspot-pill-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.onspot-pill-label {
+  color: #FDE68A;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.onspot-pill-badge {
+  background: linear-gradient(135deg, #F59E0B 0%, #DC2626 100%);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+  white-space: nowrap;
 }
 
 @keyframes deadlineGlow {
@@ -813,6 +859,44 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--silver-muted);
   font-size: 0.84rem;
   margin-left: 4px;
+}
+
+.reg-deadline-row {
+  margin-bottom: 8px;
+}
+
+.reg-onspot-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(245, 197, 66, 0.2);
+  font-size: 0.92rem;
+  color: var(--silver-light);
+}
+
+.onspot-chip {
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #FBBF24;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.onspot-detail {
+  line-height: 1.4;
+}
+
+.onspot-alert-text {
+  color: #F87171;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
 }
 
 /* ==========================================================================
@@ -1928,11 +2012,22 @@ select.form-control {
   }
 
   .countdown-deadline-pill {
-    padding: 8px 16px;
+    padding: 12px 16px;
     margin-bottom: 24px;
     font-size: 0.88rem;
-    gap: 8px;
+    gap: 10px;
     text-align: center;
+    border-radius: var(--radius-md);
+    flex-direction: column;
+  }
+  .deadline-pill-group,
+  .deadline-onspot-group {
+    justify-content: center;
+  }
+  .deadline-pill-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(245, 197, 66, 0.2);
   }
   .countdown-deadline-pill .deadline-pill-date {
     font-size: 1.05rem;
@@ -1945,6 +2040,11 @@ select.form-control {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+  .reg-onspot-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 
   /* About & Highlights */

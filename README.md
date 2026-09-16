@@ -10,6 +10,8 @@
 - **Venue**: The Kavery Engineering College Campus Auditorium (PIN 636454)
 - **Theme**: *“Innovate • Connect • Create”* | **Tagline**: *“Build • Learn • Grow”*
 - **Registration Fee**: **₹200 per head** (Includes Food & Refreshments, Kit, Participation Certificate & Cash Prizes)
+- **Online Registration Deadline**: **Tuesday, 22 September 2026 (11:59 PM IST)**
+- **On-Spot Registration**: **Available on Event Day (Limited Slots Only! First Come, First Served)**
 - **Technical Events (Choose ONE)**: Startup Spark, Project Expo, Bug Hunters, Prompt Master
 - **Non-Technical Events (Open for All)**: Cinespark, Meme Creation, Logo Hunting, Video Quiz
 
@@ -38,7 +40,7 @@ d:/zentrix/
 │   └── style.css                 # Unified Cyber Gold & Space Dark Design System + Responsive Breakpoints
 ├── js/
 │   ├── main.js                   # Mobile drawer navigation and toast alert system
-│   ├── countdown.js              # Live real-time countdown timer to 25 Sep 2026, 9:00 AM IST
+│   ├── countdown.js              # Live dynamic countdown timer (22 Sep reg deadline & 25 Sep event start)
 │   ├── form.js                   # Registration logic, dynamic team rows, live fee math, screenshot preview, validation
 │   ├── receipt.js                # jsPDF client-side vector PDF receipt generator
 │   └── admin.js                  # Admin auth, dashboard metrics, reactive search & filters, modal, SheetJS Excel export
@@ -124,7 +126,7 @@ vercel dev
 ## 📋 Production Readiness Checklist
 - [x] All 5 pages implemented and responsive (tested at 375px, 768px, 1024px, 1440px).
 - [x] No admin controls visible on public views (admin button is discrete in the top-right corner).
-- [x] Live countdown timer actively calculating remaining days, hours, minutes, seconds to 25 Sep 2026 9:00 AM IST.
+- [x] Live countdown timer actively calculating remaining days, hours, minutes, seconds to 22 Sep 2026 11:59 PM IST registration deadline (and 25 Sep event start).
 - [x] Dynamic team members UI with instantaneous live calculation (`₹200 × headcount`).
 - [x] UPI Payment QR placed above payment verification with quick "Copy UPI ID" button.
 - [x] Payment screenshot upload with live thumbnail preview.
