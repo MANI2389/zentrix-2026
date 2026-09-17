@@ -80,8 +80,8 @@ class RegistrationRequest(BaseModel):
     @field_validator("team_members")
     @classmethod
     def validate_team_size(cls, v: List[TeamMember]) -> List[TeamMember]:
-        if len(v) > 5:
-            raise ValueError("Maximum 5 additional team members allowed (Total team size: 6).")
+        if len(v) > 2:
+            raise ValueError("Maximum 2 additional team members allowed (Total team size: 3).")
         return v
 
 def generate_registration_id() -> str:
@@ -94,6 +94,11 @@ def generate_registration_id() -> str:
 def register_participant(payload: RegistrationRequest):
     # Verify calculated fee matches headcount: ₹200 * (1 + team_members)
     expected_heads = 1 + len(payload.team_members)
+    if expected_heads > 3:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Maximum team size is 3 members."
+        )
     expected_amount = expected_heads * 200
     if payload.total_amount != expected_amount:
         # Auto-correct or reject if mismatch

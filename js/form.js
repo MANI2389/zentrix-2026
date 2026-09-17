@@ -6,7 +6,7 @@
 import { showToast, getApiBaseUrl } from './main.js';
 
 const FEE_PER_HEAD = 200;
-const MAX_TEAM_MEMBERS = 5;
+const MAX_TEAM_MEMBERS = 2; // 1 Lead + up to 2 additional members = Max 3 heads
 
 // Global Form State
 let teamMembers = [];
@@ -51,7 +51,7 @@ function initTeamMembers() {
 
   addBtn.addEventListener('click', () => {
     if (teamMembers.length >= MAX_TEAM_MEMBERS) {
-      showToast(`Maximum ${MAX_TEAM_MEMBERS} additional team members allowed.`, 'warning');
+      showToast(`Maximum ${MAX_TEAM_MEMBERS} additional team members allowed (Total team size: 3).`, 'warning');
       return;
     }
 
@@ -145,7 +145,7 @@ export function renderTeamRows() {
   if (addBtn) {
     if (teamMembers.length >= MAX_TEAM_MEMBERS) {
       addBtn.disabled = true;
-      addBtn.textContent = 'Max Members Added (5)';
+      addBtn.textContent = 'Max Members Added (3 Total)';
     } else {
       addBtn.disabled = false;
       addBtn.textContent = `+ Add Team Member (${teamMembers.length}/${MAX_TEAM_MEMBERS})`;
@@ -179,7 +179,7 @@ export function updateCalculation() {
     if (teamMembers.length === 0) {
       breakdownDisplay.textContent = `Calculation: ₹${FEE_PER_HEAD} × 1 head = ₹${totalAmount} (Solo)`;
     } else {
-      breakdownDisplay.textContent = `Calculation: ₹${FEE_PER_HEAD} × ${totalHeads} heads (1 Lead + ${teamMembers.length} Members) = ₹${totalAmount}`;
+      breakdownDisplay.textContent = `Calculation: ₹${FEE_PER_HEAD} × ${totalHeads} heads (1 Lead + ${teamMembers.length} ${teamMembers.length === 1 ? 'Member' : 'Members'}) = ₹${totalAmount}`;
     }
   }
 
@@ -187,7 +187,7 @@ export function updateCalculation() {
     if (teamMembers.length === 0) {
       headcountBadge.textContent = '1 (Solo)';
     } else {
-      headcountBadge.textContent = `${totalHeads} (Lead + ${teamMembers.length} Members)`;
+      headcountBadge.textContent = `${totalHeads} (Lead + ${teamMembers.length} ${teamMembers.length === 1 ? 'Member' : 'Members'})`;
     }
   }
 
