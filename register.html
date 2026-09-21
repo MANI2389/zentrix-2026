@@ -154,23 +154,23 @@
 
         <!-- SECTION 2: EVENT SELECTION -->
         <div class="form-section">
-          <!-- 2A: Technical Event (Mandatory Single Choice) -->
+          <!-- 2A: Technical Event (Single Choice or None) -->
           <div
             style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
             <h2 class="form-section-title" style="margin-bottom: 0;">
               <span>⚡</span>
-              <span>2A. Select Technical Event <span class="req">*</span></span>
+              <span>2A. Select Technical Event</span>
             </h2>
-            <span class="badge badge-tech">Choose exactly ONE event</span>
+            <span class="badge badge-tech">Choose ONE event (or None)</span>
           </div>
           <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 16px;">
-            Select the primary technical competition your team will compete in:
+            Select the primary technical competition your team will compete in (or select None if competing only in non-technical events):
           </p>
 
           <div class="radio-cards-grid" id="event-selection-grid">
             <!-- Event Option 1 -->
             <label class="radio-card" for="event-startup-spark">
-              <input type="radio" name="event_name" id="event-startup-spark" value="Startup Spark" required>
+              <input type="radio" name="event_name" id="event-startup-spark" value="Startup Spark">
               <div class="radio-card-content">
                 <div class="radio-card-circle"></div>
                 <div>
@@ -215,9 +215,20 @@
                 </div>
               </div>
             </label>
+
+            <!-- Event Option 5 (None / Non-Tech Track Only) -->
+            <label class="radio-card" for="event-none" style="grid-column: span 2;">
+              <input type="radio" name="event_name" id="event-none" value="None">
+              <div class="radio-card-content" style="justify-content: center; opacity: 0.85;">
+                <div class="radio-card-circle"></div>
+                <div>
+                  <div style="font-weight: 600; color: var(--silver-light); font-size: 0.95rem;">🚫 None (Non-Technical Track Only)</div>
+                  <div class="text-muted" style="font-size: 0.76rem;">Participate only in the selected non-technical event</div>
+                </div>
+              </div>
+            </label>
           </div>
-          <div id="event-error" class="field-error" style="margin-top: 8px;">Please select one technical event to
-            participate in.</div>
+          <div id="event-error" class="field-error" style="margin-top: 8px;">Please select either a technical event or "None" (at least one event must be selected across both tracks).</div>
 
           <!-- 2B: Non-Technical Event (Single Choice) -->
           <div style="margin-top: 28px; padding-top: 20px; border-top: 1px dashed rgba(255, 255, 255, 0.08);">
@@ -299,7 +310,7 @@
           </div>
         </div>
 
-        <!-- SECTION 3: TEAM MEMBERS (OPTIONAL, UP TO 2 ADDITIONAL MEMBERS - MAX 3 HEADS) -->
+        <!-- SECTION 3: TEAM MEMBERS (OPTIONAL, UP TO 3 ADDITIONAL MEMBERS - MAX 4 HEADS) -->
         <div class="form-section">
           <div
             style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
@@ -309,7 +320,7 @@
                 <span>3. Team Members (Optional)</span>
               </h2>
               <p class="text-muted" style="font-size: 0.82rem;">
-                Participating as a team? Add up to 2 additional members (Max team size: 3). Solo participation is also welcome!
+                Participating as a team? Add up to 3 additional members (Max team size: 4). Solo participation is also welcome!
               </p>
             </div>
             <button type="button" id="add-member-btn" class="btn btn-outline"
@@ -324,7 +335,7 @@
           </div>
 
           <div class="text-muted" style="font-size: 0.8rem; margin-top: 6px;" id="team-counter-text">
-            Current Team Size: <strong class="text-gold" id="team-headcount-badge">1 (Solo)</strong> — Max 3 members per team (1 Lead + up to 2 additional members).
+            Current Team Size: <strong class="text-gold" id="team-headcount-badge">1 (Solo)</strong> — Max 4 members per team (1 Lead + up to 3 additional members).
           </div>
         </div>
 

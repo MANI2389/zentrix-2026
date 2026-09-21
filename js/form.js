@@ -6,7 +6,7 @@
 import { showToast, getApiBaseUrl } from './main.js';
 
 const FEE_PER_HEAD = 200;
-const MAX_TEAM_MEMBERS = 2; // 1 Lead + up to 2 additional members = Max 3 heads
+const MAX_TEAM_MEMBERS = 3; // 1 Lead + up to 3 additional members = Max 4 heads
 
 // Global Form State
 let teamMembers = [];
@@ -51,7 +51,7 @@ function initTeamMembers() {
 
   addBtn.addEventListener('click', () => {
     if (teamMembers.length >= MAX_TEAM_MEMBERS) {
-      showToast(`Maximum ${MAX_TEAM_MEMBERS} additional team members allowed (Total team size: 3).`, 'warning');
+      showToast(`Maximum ${MAX_TEAM_MEMBERS} additional team members allowed (Total team size: 4).`, 'warning');
       return;
     }
 
@@ -145,7 +145,7 @@ export function renderTeamRows() {
   if (addBtn) {
     if (teamMembers.length >= MAX_TEAM_MEMBERS) {
       addBtn.disabled = true;
-      addBtn.textContent = 'Max Members Added (3 Total)';
+      addBtn.textContent = 'Max Members Added (4 Total)';
     } else {
       addBtn.disabled = false;
       addBtn.textContent = `+ Add Team Member (${teamMembers.length}/${MAX_TEAM_MEMBERS})`;
@@ -336,10 +336,29 @@ export function checkFormValidity() {
     isValid = false;
   }
 
-  // 2. Technical event selection (mandatory 1)
-  const selectedEvent = form.querySelector('input[name="event_name"]:checked');
+  // 2. Technical & Non-Technical event selection validation
+  const selectedEvent = form.querySelector('input[name="event_name"]:checked')?.value || '';
+  const selectedNonTech = form.querySelector('input[name="non_technical_event"]:checked')?.value || '';
+  const eventError = document.getElementById('event-error');
+
   if (!selectedEvent) {
     isValid = false;
+  }
+
+  // If technical is "None" AND non-technical is either unselected or "None", participant has 0 events!
+  const isTechNone = !selectedEvent || selectedEvent === 'None';
+  const isNonTechNone = !selectedNonTech || selectedNonTech === 'None';
+
+  if (isTechNone && isNonTechNone) {
+    isValid = false;
+    if (eventError && selectedEvent === 'None') {
+      eventError.textContent = '⚠️ Since "None" is selected for Technical Event, you must select at least ONE Non-Technical Event below.';
+      eventError.style.display = 'block';
+    }
+  } else {
+    if (eventError) {
+      eventError.style.display = 'none';
+    }
   }
 
   // 3. Team members validation
@@ -369,7 +388,7 @@ export function checkFormValidity() {
       submitHelp.textContent = '✓ All fields verified! Ready to register.';
       submitHelp.style.color = 'var(--color-success)';
     } else {
-      submitHelp.textContent = 'Submit activates once primary fields, 1 technical event, team details, payment UTR, and terms are filled.';
+      submitHelp.textContent = 'Submit activates once primary fields, at least 1 event (Technical or Non-Technical), team details, payment UTR, and terms are filled.';
       submitHelp.style.color = 'var(--silver-muted)';
     }
   }
@@ -402,6 +421,16 @@ async function handleFormSubmit(e) {
   // Selected non-technical event (single choice)
   const selectedNonTech = form.querySelector('input[name="non_technical_event"]:checked')?.value || '';
   const nonTechEvents = (selectedNonTech && selectedNonTech !== 'None') ? [selectedNonTech] : [];
+
+  const eventName = formData.get('event_name')?.toString().trim();
+  if ((!eventName || eventName === 'None') && nonTechEvents.length === 0) {
+    showToast('Please select at least one event (Technical or Non-Technical) to participate in.', 'error');
+    if (errorBanner) {
+      errorText.textContent = 'Please select at least one event: choose a Technical event or a Non-Technical event.';
+      errorBanner.style.display = 'flex';
+    }
+    return;
+  }
 
   const totalAmount = (1 + teamMembers.length) * FEE_PER_HEAD;
 

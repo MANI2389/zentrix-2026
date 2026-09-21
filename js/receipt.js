@@ -74,7 +74,13 @@ function populateUI(data) {
   const utrEl = document.getElementById('display-utr');
 
   if (regIdEl) regIdEl.textContent = data.id || 'ZX26-PENDING';
-  if (eventNameEl) eventNameEl.textContent = `🚀 ${data.event_name || 'Technical Event'}`;
+  if (eventNameEl) {
+    if (data.event_name && data.event_name !== 'None') {
+      eventNameEl.textContent = `🚀 ${data.event_name}`;
+    } else {
+      eventNameEl.textContent = '🚫 None (Non-Technical Track Only)';
+    }
+  }
 
   if (nonTechEventsEl) {
     if (data.non_technical_events && data.non_technical_events.length > 0) {
@@ -293,10 +299,15 @@ export function generatePDFReceipt() {
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(70, 70, 70);
-  doc.text('Technical Event (Mandatory):', margin + 4, curY + 6);
+  doc.text('Technical Event:', margin + 4, curY + 6);
   doc.setFont('helvetica', 'bold');
-  doc.setTextColor(190, 130, 20);
-  doc.text(data.event_name || 'Startup Spark', margin + 50, curY + 6);
+  if (data.event_name && data.event_name !== 'None') {
+    doc.setTextColor(190, 130, 20);
+    doc.text(data.event_name, margin + 50, curY + 6);
+  } else {
+    doc.setTextColor(100, 100, 100);
+    doc.text('None (Non-Technical Track Only)', margin + 50, curY + 6);
+  }
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(70, 70, 70);

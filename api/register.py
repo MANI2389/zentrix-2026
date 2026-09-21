@@ -37,7 +37,8 @@ VALID_EVENTS = {
     "Startup Spark",
     "Project Expo",
     "Bug Hunters",
-    "Prompt Master"
+    "Prompt Master",
+    "None"
 }
 
 class TeamMember(BaseModel):
@@ -80,8 +81,8 @@ class RegistrationRequest(BaseModel):
     @field_validator("team_members")
     @classmethod
     def validate_team_size(cls, v: List[TeamMember]) -> List[TeamMember]:
-        if len(v) > 2:
-            raise ValueError("Maximum 2 additional team members allowed (Total team size: 3).")
+        if len(v) > 3:
+            raise ValueError("Maximum 3 additional team members allowed (Total team size: 4).")
         return v
 
 def generate_registration_id() -> str:
@@ -92,12 +93,21 @@ def generate_registration_id() -> str:
 @app.post("/api/register", status_code=status.HTTP_201_CREATED)
 @app.post("/register", status_code=status.HTTP_201_CREATED)
 def register_participant(payload: RegistrationRequest):
-    # Verify calculated fee matches headcount: ₹200 * (1 + team_members)
-    expected_heads = 1 + len(payload.team_members)
-    if expected_heads > 3:
+    # Ensure at least one valid event is selected across tracks
+    tech_is_none = (payload.event_name == "None" or not payload.event_name)
+    has_non_tech = any(ev and ev != "None" for ev in (payload.non_technical_events or []))
+    if tech_is_none and not has_non_tech:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Maximum team size is 3 members."
+            detail="Please select at least one event (Technical or Non-Technical) to participate in."
+        )
+
+    # Verify calculated fee matches headcount: ₹200 * (1 + team_members)
+    expected_heads = 1 + len(payload.team_members)
+    if expected_heads > 4:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Maximum team size is 4 members."
         )
     expected_amount = expected_heads * 200
     if payload.total_amount != expected_amount:

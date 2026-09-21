@@ -509,7 +509,12 @@ function renderTable(data) {
         <td>${escapeHtml(reg.register_number || '—')}</td>
         <td><span class="badge badge-tech" style="font-size: 0.72rem;">${escapeHtml(reg.department)}</span></td>
         <td>${escapeHtml(reg.year || '—')}</td>
-        <td><span class="badge badge-tech" style="font-size: 0.76rem; font-weight: 600;">${escapeHtml(reg.event_name)}</span></td>
+        <td>
+          ${(reg.event_name && reg.event_name !== 'None') 
+            ? `<span class="badge badge-tech" style="font-size: 0.76rem; font-weight: 600;">${escapeHtml(reg.event_name)}</span>`
+            : `<span class="badge badge-secondary" style="font-size: 0.72rem; opacity: 0.85;">None (Non-Tech)</span>`
+          }
+        </td>
         <td>${nonTechBadges}</td>
         <td>
           <span class="badge ${teamSize > 1 ? 'badge-naac' : 'badge-secondary'}" style="font-size: 0.75rem;">
@@ -585,7 +590,7 @@ function openDetailModal(regId) {
   // Populate Modal Fields
   document.getElementById('modal-reg-id').textContent = reg.id;
   document.getElementById('modal-created-at').textContent = reg.created_at ? new Date(reg.created_at).toLocaleString('en-GB') : '';
-  document.getElementById('modal-event-title').textContent = `Track: ${reg.event_name}`;
+  document.getElementById('modal-event-title').textContent = (reg.event_name && reg.event_name !== 'None') ? `Track: ${reg.event_name}` : 'Track: Non-Technical Track Only';
 
   document.getElementById('modal-name').textContent = reg.full_name || '—';
   document.getElementById('modal-college').textContent = reg.college_name || '—';
