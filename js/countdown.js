@@ -1,11 +1,11 @@
 /**
  * ZENTRIX 2K26 — Live Dynamic Countdown Timer
- * Target 1 (Online Registration Deadline): Tuesday, 22 September 2026, 11:59:59 PM IST (UTC+05:30)
+ * Target 1 (Online Registration Deadline): Wednesday, 23 September 2026, 11:59:59 PM IST (UTC+05:30)
  * Target 2 (Symposium Event Date): Friday, 25 September 2026, 09:00:00 AM IST (UTC+05:30)
  */
 
 export function initCountdown() {
-  const regDeadline = new Date('2026-09-22T23:59:59+05:30').getTime();
+  const regDeadline = new Date('2026-09-23T23:59:59+05:30').getTime();
   const eventDate = new Date('2026-09-25T09:00:00+05:30').getTime();
 
   const daysEl = document.getElementById('cd-days');
@@ -31,7 +31,7 @@ export function initCountdown() {
   function update() {
     const now = new Date().getTime();
 
-    // Stage 1: Counting down to Online Registration Closing (22 Sep 2026, 11:59:59 PM IST)
+    // Stage 1: Counting down to Online Registration Closing (23 Sep 2026, 11:59:59 PM IST)
     if (now < regDeadline) {
       if (labelEl && labelEl.textContent !== '⏳ Online Registration Closes In ⏳') {
         labelEl.textContent = '⏳ Online Registration Closes In ⏳';
