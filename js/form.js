@@ -28,15 +28,16 @@ function initCopyUPI() {
 
   if (copyBtn && upiText) {
     copyBtn.addEventListener('click', async () => {
+      const upiId = upiText.textContent.trim();
       try {
-        await navigator.clipboard.writeText(upiText.textContent.trim());
+        await navigator.clipboard.writeText(upiId);
         copyBtn.textContent = 'Copied!';
-        showToast('UPI ID copied to clipboard: vasukixlnc@okaxis', 'success');
+        showToast(`UPI ID copied to clipboard: ${upiId}`, 'success');
         setTimeout(() => {
           copyBtn.textContent = 'Copy';
         }, 2000);
       } catch (e) {
-        showToast('Please manually copy UPI ID: vasukixlnc@okaxis', 'info');
+        showToast(`Please manually copy UPI ID: ${upiId}`, 'info');
       }
     });
   }

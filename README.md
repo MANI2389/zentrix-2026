@@ -53,7 +53,7 @@ d:/zentrix/
 ├── assets/
 │   ├── college-crest.png         # Official College Emblem
 │   ├── naac-badge.png            # NAAC A+ Accreditation Badge
-│   ├── payment-qr.png            # UPI Payment QR code (Vasuki Rajkumar / vasukixlnc@okaxis)
+│   ├── payment-qr.png            # UPI Payment QR code (Veerapandi P / veerapandip08-1@okaxis)
 │   ├── whatsapp-qr.png           # WhatsApp group QR code
 │   ├── whatsapp-group-card.png   # Full WhatsApp group invite card
 │   ├── og-image.png              # 1200x630 Open Graph preview banner

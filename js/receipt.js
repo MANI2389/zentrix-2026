@@ -403,7 +403,7 @@ export function generatePDFReceipt() {
   doc.text('Payee Account:', margin + 95, curY + 13);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(10, 10, 10);
-  doc.text('vasukixlnc@okaxis (Vasuki Rajkumar)', margin + 120, curY + 13);
+  doc.text('veerapandip08-1@okaxis (Veerapandi P)', margin + 120, curY + 13);
 
   // 8. Event Schedule & Instructions
   curY += 22;
