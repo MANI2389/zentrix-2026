@@ -13,6 +13,10 @@ export function initCountdown() {
   const minutesEl = document.getElementById('cd-minutes');
   const secondsEl = document.getElementById('cd-seconds');
   const labelEl = document.getElementById('cd-label');
+  const deadlineDateEl = document.querySelector('.deadline-pill-date');
+  if (deadlineDateEl) {
+    deadlineDateEl.textContent = '24 September 2026';
+  }
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
