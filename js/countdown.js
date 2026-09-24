@@ -1,11 +1,11 @@
 /**
  * ZENTRIX 2K26 — Live Dynamic Countdown Timer
- * Target 1 (Online Registration Deadline): Thursday, 24 September 2026, 11:59:59 PM IST (UTC+05:30)
+ * Target 1 (Online Registration Deadline): Thursday, 24 September 2026, 12:00:00 PM IST (UTC+05:30)
  * Target 2 (Symposium Event Date): Friday, 25 September 2026, 09:00:00 AM IST (UTC+05:30)
  */
 
 export function initCountdown() {
-  const regDeadline = new Date('2026-09-24T23:59:59+05:30').getTime();
+  const regDeadline = new Date('2026-09-24T12:00:00+05:30').getTime();
   const eventDate = new Date('2026-09-25T09:00:00+05:30').getTime();
 
   const daysEl = document.getElementById('cd-days');
@@ -16,6 +16,10 @@ export function initCountdown() {
   const deadlineDateEl = document.querySelector('.deadline-pill-date');
   if (deadlineDateEl) {
     deadlineDateEl.textContent = '24 September 2026';
+  }
+  const deadlineTimeEl = document.querySelector('.deadline-pill-time');
+  if (deadlineTimeEl) {
+    deadlineTimeEl.textContent = '(12:00 PM IST)';
   }
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
@@ -35,7 +39,7 @@ export function initCountdown() {
   function update() {
     const now = new Date().getTime();
 
-    // Stage 1: Counting down to Online Registration Closing (24 Sep 2026, 11:59:59 PM IST)
+    // Stage 1: Counting down to Online Registration Closing (24 Sep 2026, 12:00:00 PM IST)
     if (now < regDeadline) {
       if (labelEl && labelEl.textContent !== '⏳ Online Registration Closes In ⏳') {
         labelEl.textContent = '⏳ Online Registration Closes In ⏳';
@@ -47,6 +51,13 @@ export function initCountdown() {
     else if (now < eventDate) {
       if (labelEl && labelEl.textContent !== '⚡ Symposium Starts In ⚡') {
         labelEl.textContent = '⚡ Symposium Starts In ⚡';
+      }
+      const badgeEl = document.querySelector('.deadline-pill-badge');
+      if (badgeEl && badgeEl.textContent !== 'Online Closed') {
+        badgeEl.textContent = 'Online Closed';
+        badgeEl.style.background = 'rgba(239, 68, 68, 0.25)';
+        badgeEl.style.color = '#FCA5A5';
+        badgeEl.style.borderColor = 'rgba(239, 68, 68, 0.5)';
       }
       const distance = eventDate - now;
       renderTime(distance);
