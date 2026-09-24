@@ -52,27 +52,27 @@
       </p>
     </div>
 
-    <!-- Registration Deadline Alert Banner (Top of Registration Page) -->
-    <div class="reg-deadline-alert" id="reg-deadline-banner" role="alert">
-      <div class="reg-deadline-inner">
-        <div class="reg-deadline-badge-wrap">
-          <span class="pulse-beacon" aria-hidden="true">
-            <span class="beacon-ring"></span>
-            <span class="beacon-dot"></span>
-          </span>
-          <span class="reg-deadline-icon" aria-hidden="true">⏳</span>
-          <span class="reg-deadline-tag">REGISTRATION NOTICE</span>
-        </div>
-        <div class="reg-deadline-message">
-          <div class="reg-deadline-row">
-            <span>Last Date to Register Online: <strong class="text-gold-bright">Thursday, 24 September 2026</strong> (Closes at 12:00 PM IST)</span>
-            <span class="reg-deadline-note">• Register online now to guarantee participant kit, food token &amp; certificate!</span>
-          </div>
-          <div class="reg-onspot-row">
-            <span class="onspot-chip">⚡ ON-SPOT REGISTRATION</span>
-            <span class="onspot-detail">Available at Campus Registration Desk on 25 Sep — <strong class="onspot-alert-text">Limited Slots Only!</strong> (Subject to seat availability on first-come, first-served basis).</span>
-          </div>
-        </div>
+    <!-- Online Registration Closed Notice Banner -->
+    <div class="reg-closed-hero-box" id="reg-closed-page-banner" role="alert" style="margin-bottom: 28px;">
+      <div class="reg-closed-badge">
+        <span class="closed-pulse-dot" aria-hidden="true"></span>
+        <span>PORTAL UPDATE</span>
+      </div>
+      <h2 class="reg-closed-heading" style="font-size: clamp(1.5rem, 3.5vw, 2.2rem);">
+        <span class="closed-icon" aria-hidden="true">⛔</span>
+        ONLINE REGISTRATION CLOSED
+        <span class="closed-icon" aria-hidden="true">⛔</span>
+      </h2>
+      <p class="reg-closed-subtext">
+        Online registration for ZENTRIX 2K26 is now officially closed. We look forward to welcoming all registered delegates!
+      </p>
+      <div class="reg-closed-onspot-card">
+        <div class="onspot-card-badge">⚡ ON-SPOT REGISTRATION AVAILABLE</div>
+        <p class="onspot-card-text">
+          Didn't register online? You can still register in-person on event day at the <strong>College Registration Desk</strong>:
+          <span class="onspot-highlight">Friday, 25 September 2026 (From 8:30 AM to 10:00 AM IST)</span>
+          <span class="onspot-warn">• Limited Slots Only (First-Come, First-Served Basis) • Registration Fee: ₹200/head</span>
+        </p>
       </div>
     </div>
 
@@ -452,14 +452,14 @@
             proceed.</span>
         </div>
 
-        <!-- SUBMIT BUTTON -->
+        <!-- SUBMIT BUTTON (ONLINE REGISTRATION CLOSED) -->
         <div style="margin-top: 24px; text-align: center;">
-          <button type="submit" id="submit-btn" class="btn btn-primary"
-            style="width: 100%; max-width: 450px; padding: 16px 32px; font-size: 1.15rem;" disabled>
-            Complete Registration &amp; Generate Receipt →
+          <button type="button" id="submit-btn" class="btn btn-primary"
+            style="width: 100%; max-width: 480px; padding: 16px 32px; font-size: 1.15rem; background: #374151; border-color: #4B5563; color: #9CA3AF; cursor: not-allowed;" disabled>
+            ⛔ Online Registration Closed
           </button>
-          <p class="text-muted" style="font-size: 0.8rem; margin-top: 10px;" id="submit-help-text">
-            Submit button activates automatically once all required fields and payment reference are filled.
+          <p style="color: #F87171; font-weight: 700; font-size: 0.95rem; margin-top: 12px;" id="submit-help-text">
+            Online registration is closed. Please visit the On-Spot Registration Desk at the college on 25 September 2026.
           </p>
         </div>
 

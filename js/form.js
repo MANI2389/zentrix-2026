@@ -7,6 +7,7 @@ import { showToast, getApiBaseUrl } from './main.js';
 
 const FEE_PER_HEAD = 200;
 const MAX_TEAM_MEMBERS = 3; // 1 Lead + up to 3 additional members = Max 4 heads
+const IS_REGISTRATION_CLOSED = true;
 
 // Global Form State
 let teamMembers = [];
@@ -382,6 +383,23 @@ export function checkFormValidity() {
     isValid = false;
   }
 
+  // If registration is closed, keep submit disabled and show notice
+  if (IS_REGISTRATION_CLOSED) {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⛔ Online Registration Closed';
+      submitBtn.style.background = '#374151';
+      submitBtn.style.borderColor = '#4B5563';
+      submitBtn.style.color = '#9CA3AF';
+      submitBtn.style.cursor = 'not-allowed';
+    }
+    if (submitHelp) {
+      submitHelp.textContent = 'Online registration is closed. Please visit the On-Spot Registration Desk at the college on 25 September 2026.';
+      submitHelp.style.color = '#F87171';
+    }
+    return false;
+  }
+
   // Update button state
   submitBtn.disabled = !isValid;
   if (submitHelp) {
@@ -402,6 +420,11 @@ export function checkFormValidity() {
 // ==========================================================================
 async function handleFormSubmit(e) {
   e.preventDefault();
+
+  if (IS_REGISTRATION_CLOSED) {
+    showToast('Online registration has officially closed. Please register on-spot at the campus registration desk on 25 Sep 2026.', 'warning', 7000);
+    return;
+  }
 
   const form = document.getElementById('registration-form');
   const submitBtn = document.getElementById('submit-btn');

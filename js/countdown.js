@@ -39,25 +39,10 @@ export function initCountdown() {
   function update() {
     const now = new Date().getTime();
 
-    // Stage 1: Counting down to Online Registration Closing (24 Sep 2026, 12:00:00 PM IST)
-    if (now < regDeadline) {
-      if (labelEl && labelEl.textContent !== '⏳ Online Registration Closes In ⏳') {
-        labelEl.textContent = '⏳ Online Registration Closes In ⏳';
-      }
-      const distance = regDeadline - now;
-      renderTime(distance);
-    }
-    // Stage 2: Registration closed, counting down to Symposium Launch (25 Sep 2026, 09:00:00 AM IST)
-    else if (now < eventDate) {
+    // Online Registration is officially closed! Count down to Symposium Launch (25 Sep 2026, 09:00:00 AM IST)
+    if (now < eventDate) {
       if (labelEl && labelEl.textContent !== '⚡ Symposium Starts In ⚡') {
         labelEl.textContent = '⚡ Symposium Starts In ⚡';
-      }
-      const badgeEl = document.querySelector('.deadline-pill-badge');
-      if (badgeEl && badgeEl.textContent !== 'Online Closed') {
-        badgeEl.textContent = 'Online Closed';
-        badgeEl.style.background = 'rgba(239, 68, 68, 0.25)';
-        badgeEl.style.color = '#FCA5A5';
-        badgeEl.style.borderColor = 'rgba(239, 68, 68, 0.5)';
       }
       const distance = eventDate - now;
       renderTime(distance);

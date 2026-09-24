@@ -90,9 +90,18 @@ def generate_registration_id() -> str:
     suffix = "".join(random.choices(string.digits + "ABCDEFGHJKLMNPQRSTUVWXYZ", k=5))
     return f"ZX26-{suffix}"
 
+# Registration status toggle (True = Online registration closed)
+REGISTRATION_CLOSED = True
+
 @app.post("/api/register", status_code=status.HTTP_201_CREATED)
 @app.post("/register", status_code=status.HTTP_201_CREATED)
 def register_participant(payload: RegistrationRequest):
+    if REGISTRATION_CLOSED:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Online registration has officially closed. On-spot registration is available at the campus registration desk on Friday, 25 September 2026."
+        )
+
     # Ensure at least one valid event is selected across tracks
     tech_is_none = (payload.event_name == "None" or not payload.event_name)
     has_non_tech = any(ev and ev != "None" for ev in (payload.non_technical_events or []))
